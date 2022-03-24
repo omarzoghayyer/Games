@@ -37,7 +37,6 @@ int main ()
     {
         std::cout << "Loser! haha" << std::endl;
     }
-    
 
     return 0 ;
 }
