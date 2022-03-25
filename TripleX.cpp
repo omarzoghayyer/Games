@@ -12,8 +12,6 @@ int main ()
    const int CodeProduct = CodeA * CodeB * CodeC;
 
     
-
-
     // print CodeSum and CodeProducts to the terminal
     std::cout << std::endl;
     std::cout << " + There are 3 numbers in the code" << std::endl;
@@ -26,14 +24,14 @@ int main ()
     std::cin >> GuessB;
     std::cin >> GuessC;
 
-    int GuessProduct  = GuessA + GuessB + GuessC;
-    int GuessSum = GuessA * GuessB * GuessC;   
+    int GuessSum  = GuessA + GuessB + GuessC;
+    int GuessProduct = GuessA * GuessB * GuessC;   
 
     if (GuessSum == CodeSum)
     {
         std::cout << "You Win!";
     }
-    else
+      else
     {
         std::cout << "Loser! haha" << std::endl;
     }
