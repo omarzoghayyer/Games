@@ -1,23 +1,25 @@
 
 #include <iostream>
 #include <string>
+#include <ctime>
 
-void PrintIntroduction ()
+void PrintIntroduction (int Difficulty)
+
 
 {
     //print welcome messege and directions for players
-    std::cout << "You are a secret agent breaking into a secure server room\n";
-    std::cout << "Enter the correct code to continue...\n\n";
+    std::cout << "\n\nYou are a secret agent breaking into level  " << Difficulty;
+    std::cout << "  secure server room...\n Enter the correct cofe to continue...\n\n";
 }
 
-void PlayerGame()
+bool PlayerGame(int Difficulty)
 
-{
+{  
+      PrintIntroduction(Difficulty);
 
-
-   const int CodeA = 1;
-   const int CodeB = 3;
-   const int CodeC = 3;
+   const int CodeA = rand() % Difficulty + Difficulty;
+   const int CodeB = rand() % Difficulty + Difficulty;
+   const int CodeC = rand() % Difficulty + Difficulty;
 
    const int CodeSum  = CodeA + CodeB + CodeC;
    const int CodeProduct = CodeA * CodeB * CodeC;
@@ -40,23 +42,48 @@ void PlayerGame()
 
     // check if players guess is correct
 
-    if (GuessSum == CodeSum)
+    if (GuessSum == CodeSum && CodeProduct == GuessProduct)
     {
-        std::cout <<"You Win!" << std::endl;
+        std::cout <<"congrats, transfering to next level... "<<  std::endl;
+        return true;
     }
       else
     {
-        std::cout << "\nLoser! haha";
-    }
+        std::cout << "\nLoser! haha, try again!";
+        return false;
+    } 
 
 
     
 }
 
 int main ()
-{
-    PrintIntroduction();
-    PlayerGame();
+{      
+    srand(time(NULL)); //create new random sequene based on time of the day
+
+    int LevelDifficulty = 1;
+    const int MaxLevelOfDifficulty = 5;
+    
+
+    while (LevelDifficulty <= MaxLevelOfDifficulty) // loop game untill all levels are reached
+
+    {
+        // std::cout << rand() % 3 << "\n";
+        bool bLevelComplete = PlayerGame(LevelDifficulty);
+        std::cin.clear(); //Clears any errors
+        std::cin.ignore(); // Discards the buffer
+    
+
+        if (bLevelComplete){
+
+            ++LevelDifficulty;
+        }
+    }
+
+    std::cout <<  "\n *** Congrats! you have completed all levels ***\n";
+    
     return 0;
+    
+
 
 }
